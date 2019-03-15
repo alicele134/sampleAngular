@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <title>My First Project</title>
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="sidenav">
+            <h1 style="color: white; text-align:center; font-size: 35px">OPSWAT</h1>
+            <nav>
+                <ul class="nav">
+                    <li>
+                        <a href="#Dashboard">
+                            <i class="fas fa-columns"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#Vulnerabilities">
+                            <i class="fas fa-list-alt"></i> Vulnerabilities</a>
+                    </li>
+                    <li>
+                        <a href="#Inventory">
+                            <i class="fas fa-clipboard-list"></i> Inventory</a>
+                    </li>
+                    <li>
+                        <a href="#Access Control">
+                            <i class="fas fa-lock"></i> Access Control</a>
+                    </li>
+                    <li>
+                        <a href="#Policies">
+                            <i class="fas fa-calendar-day"></i> Policies</a>
+                    </li>
+                    <li>
+                        <a href="#Event Log">
+                            <i class="fas fa-calendar-day"></i> Event Log</a>
+                    </li>
+                    <li>
+                        <a href="#UserManagement">
+                            <i class="far fa-user"></i> User Management</a>
+                    </li>
+                    <li>
+                        <a href="#Settings">
+                            <i class="fas fa-sync"></i> Settings</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div ng-app="" class="main">
+        <div class="header">
+            <div class="title-parent">Setting/</div>
+            <div class="title-child">
+                <h2 style="float:left">Rebranding</h2>
+                <!-- <button>ADD NEW PACKAGE</button> -->
+            </div>
+        </div>
+
+        <div class="part-button">
+            <input type="text" ng-model="nameSearch" id="nameSearch" placeholder="Seacrh by name, description">
+            <button>DELETE</button>
+        </div>
+        <div class="main-body">
+            <div class="pagin">1-1 of 1 package</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="" id="">
+                        </th>
+                        <th>PACKAGE NAME</th>
+                        <th>DESCRIPTION</th>
+                        <th>GROUPS ASSIGNED</th>
+                        <th>LAST UPDATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="" id="">
+                        </th>
+                        <td>Default</td>
+                        <td>This is a default rebranding package. It could not be deleted, but you can update it.</td>
+                        <td>1</td>
+                        <td>Mar 12, 2019 08:26:35 AM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <h5>MetaAccess ® | Version 1.0.0 | Terms and Conditions | Privacy Policy</h5>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
