@@ -9,7 +9,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    
     <title>My First Project</title>
     <link rel="stylesheet" href="index.css" type="text/css">
 </head>
@@ -57,20 +59,29 @@
         </div>
     </div>
 
-    <div ng-app="" class="main">
+    <div ng-app="myApp" class="main" >
+        <div class="header1"> 
+            <span><a> <i class="far fa-question-circle"></i> Help Center  </a></span>
+            <span class="headerRight"> <a> Tuoi Dinh testing </a> | <a> LOGOUT </a></span>
+        </div>
         <div class="header">
             <div class="title-parent">Setting/</div>
             <div class="title-child">
-                <h2 style="float:left">Rebranding</h2>
-                <!-- <button>ADD NEW PACKAGE</button> -->
+                <span class="headerLeft"> <h2>Rebranding</h2></span>
+               
+                <span class="headerRight"><button>ADD NEW PACKAGE</button></span> 
             </div>
         </div>
 
         <div class="part-button">
-            <input type="text" ng-model="nameSearch" id="nameSearch" placeholder="Seacrh by name, description">
-            <button>DELETE</button>
+            <div class="part-button-left">
+                <span><input type="text" ng-model="nameSearch" id="nameSearch" placeholder="Seacrh by name, description"> </span>
+                <span><button><i class="fas fa-search"></i> </button></span>
+            </div>
+            
+            <div class="part-button-right"><button>DELETE</button></div>
         </div>
-        <div class="main-body">
+        <div class="main-body" ng-controller="myController">
             <div class="pagin">1-1 of 1 package</div>
             <table class="table">
                 <thead>
@@ -84,16 +95,17 @@
                         <th>LAST UPDATE</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th>
+                <tbody id="dt">
+                    <tr ng-repeat="p in list">
+                        <td>
                             <input type="checkbox" name="" id="">
-                        </th>
-                        <td>Default</td>
-                        <td>This is a default rebranding package. It could not be deleted, but you can update it.</td>
-                        <td>1</td>
-                        <td>Mar 12, 2019 08:26:35 AM</td>
+                        </td>
+                        <td>{{ p.packageName }}</td>
+                        <td>{{ p.description }}</td>
+                        <td> {{ p.group }}</td>
+                        <td>{{ p.lastUpdate }}</td>
                     </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -103,6 +115,10 @@
     </div>
     </div>
 
+    <script src="index.js">
+    
+    
+    </script>
 </body>
 
 </html>
