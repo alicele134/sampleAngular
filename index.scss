@@ -37,6 +37,8 @@
 
 .title-parent {
     height: 15px;
+
+
 }
 
 .h2 {
@@ -44,20 +46,52 @@
 }
 
 .part-button{
-    clear: left;
-    height: 20px;
-    margin-top: 85px;
-    margin-bottom: 15px;
+    // clear: both;
+    // height: 20px;
+    // margin-top: 50px;
+    // margin-bottom: 15px;
 
-    button{
-        float: right;
-        margin-right: 15px;
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    height:50px;
+    margin: 10px 0px;
+    padding-top: 5px;
+    
+    //  overflow: hidden;
+
+    .part-button-left{
+        //margin-left: -5px;
+        display:table-cell;
+        
+        input {
+            width: 250px;
+        }
+        //float: left
+    }
+
+    .part-button-left button{
+        margin-left: -5px;
+    }
+
+    .part-button-right{
+        // float: right;
+        // display:inline-block;
+        display: table-cell;
+        text-align: right;
+
+        // float:right
+    }
+
+    .part-button-right button {
+        margin-right: 10px;
     }
 }
 
 .pagin {
+    clear: both;
     float: right;
-    margin-bottom: 15px;
+    margin-right: 10px;
 }
 
 .footer {
@@ -67,5 +101,37 @@
 .title-child {
     button {
     margin-right: 10px;
+    }
+}
+
+.header1 {
+    height: 40px;
+    font-weight: 500;
+    
+    .headerLeft {
+        display: inline-block;
+    }
+    .headerRight {
+        margin-right: 20px;
+        display: inline-block;
+        float: right;
+    }
+}
+
+.header {
+    height: 100px;
+    border-bottom: 1px solid #eee;
+    span.headerLeft {
+        float: left;
+        display: inline-block;
+    }
+    span.headerRight{
+        display: inline-block;
+        float: right;
+        margin-top: 28px;
+        
+        button {
+            background-color: #2672FB;
+        }
     }
 }
