@@ -1,0 +1,28 @@
+<div class="main-body" >
+    <div class="paging">1-1 of 1 package</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" name="" id="">
+                </th>
+                <th>PACKAGE NAME</th>
+                <th>DESCRIPTION</th>
+                <th>GROUPS ASSIGNED</th>
+                <th>LAST UPDATE</th>
+            </tr>
+        </thead>
+        <tbody id="dt">
+            <tr ng-repeat="p in list | filter:nameSearch">
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>{{ p.packageName }}</td>
+                <td>{{ p.description }}</td>
+                <td> {{ p.group }}</td>
+                <td>{{ p.lastUpdate }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>

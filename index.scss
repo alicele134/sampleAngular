@@ -1,6 +1,20 @@
+$font: "Roboto", sans-serif;
+$padding-10: 10px;
+$margin-10: 10px;
+$background-color-sidenav: RGB(17,31,65);
+$color-sidenav-a:  #818181;
+$color-sidenav-a-hover: #f1f1f1;
+$color-border-bottom: #eee;
+$color-button-add-new-package: #2672FB;
+$color-add-new-package: #ffffff;
+$color-background-hover-add-new-package: #333;
+$color-button-white: #fff;
+
+
 .body {
-    font-family: "Roboto", sans-serif;
+    font-family: $font;
 }
+
 .sidenav {
     height: 100%;
     width: 235px;
@@ -8,25 +22,25 @@
     z-index: 1; 
     top: 0;
     left: 0;
-    background-color: RGB(17,31,65);
+    background-color: $background-color-sidenav;
     padding-top: 20px;
-    /* margin-left: 0px;
-    margin-right: 0px; */
      
     a{
         padding: 10px 0px 0px 20px;
         text-decoration: none;
         font-size: 15px;
-        color: #818181;
+        color: $color-sidenav-a;
         display: block;
         margin-bottom:0px;
+        cursor: pointer;
     }
 
-     i {
+    i {
         margin-right: 5px;
     }
+
     a:hover {
-        color: #f1f1f1;
+        color: $color-sidenav-a-hover;
     }
 }
 
@@ -35,10 +49,8 @@
     height: 500px;
 }
 
-.title-parent {
-    height: 15px;
-
-
+.main-body {
+    min-height: 800px;
 }
 
 .h2 {
@@ -46,61 +58,65 @@
 }
 
 .part-button{
-    // clear: both;
-    // height: 20px;
-    // margin-top: 50px;
-    // margin-bottom: 15px;
-
     display: table;
     width: 100%;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $color-border-bottom;
     height:50px;
     margin: 10px 0px;
     padding-top: 5px;
-    
-    //  overflow: hidden;
 
     .part-button-left{
-        //margin-left: -5px;
         display:table-cell;
         
         input {
             width: 250px;
         }
-        //float: left
     }
 
     .part-button-left button{
         margin-left: -5px;
+        background-color: $color-button-white;
     }
 
     .part-button-right{
-        // float: right;
-        // display:inline-block;
         display: table-cell;
         text-align: right;
-
-        // float:right
     }
 
     .part-button-right button {
-        margin-right: 10px;
+        margin-right: $margin-10;
     }
 }
 
-.pagin {
+.paging {
     clear: both;
     float: right;
-    margin-right: 10px;
+    margin-right: $margin-10;
 }
 
 .footer {
     clear: both;
-}
+    border-bottom: 2px solid $color-border-bottom;
 
-.title-child {
-    button {
-    margin-right: 10px;
+    img {
+        width: 100px;
+        float: right;
+        display: block;
+        height: 20px;
+        margin-right: $margin-10;
+    }
+
+    .footerLeft {
+        display: inline-block;
+        margin-top: $margin-10;
+    }
+
+    .footerRight {
+        float: right;
+        display: inline-block;
+        float: right;
+        margin-top: 20px;
+        margin-right: -103px;
     }
 }
 
@@ -120,18 +136,92 @@
 
 .header {
     height: 100px;
-    border-bottom: 1px solid #eee;
-    span.headerLeft {
-        float: left;
-        display: inline-block;
+    border-bottom: 1px solid $color-border-bottom;
+
+    .title-parent {
+        height: 15px;
     }
-    span.headerRight{
-        display: inline-block;
-        float: right;
-        margin-top: 28px;
-        
-        button {
-            background-color: #2672FB;
+
+    .title-child {
+
+        span{
+            float: left;
+            display: inline-block;
+    
+            &.headerRight{
+                float: right;
+                margin-top: 22px;
+                margin-right: $margin-10;
+
+                .btn-new-package {
+                    width: 210px;
+                    height: 35px;
+                    border-radius: 0;
+                    text-align: center;
+                    background-color: $color-button-add-new-package;
+                    color: $color-add-new-package;
+                    font-size: 16px;
+                    &:hover {
+                        background-color: $color-background-hover-add-new-package; 
+                    }
+                }
+            }
         }
     }
 }
+
+textarea.col-md-8.nameInput {
+    height: 90px;
+}
+
+.addNewPackage {
+    form {
+        border-bottom: 1px solid #cccccc;
+        margin-bottom: $margin-10;
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+            min-height: 50px;
+        
+            input {
+                height: 40px;
+            }
+        
+            textarea .nameInput {
+                height: 90px;
+            }
+        }
+    }
+
+    .button-part {
+        float: right;
+
+        button {
+            width: 100px;
+            height: 40px;
+    
+            &#discard {
+                background-color: $color-button-white;
+                color: $color-button-add-new-package;
+                border-color: $color-button-add-new-package;
+                border: 1px solid;
+            }
+    
+            &#add {
+                background-color: $color-button-add-new-package;
+                border: 0px;
+                color: $color-button-white;
+
+                :hover {
+                    color: red;
+                }
+            }
+        }
+    }
+
+    
+}
+
+
+

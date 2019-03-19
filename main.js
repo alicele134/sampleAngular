@@ -26,14 +26,27 @@ var packages = [
 ];
 
 var app = angular.module("myApp", []);
-app.controller("myController", function($scope, $location) {
+
+// app.config(function($routeProvider) {
+//     $routeProvider
+//     .when('/', {
+//         controller:"myController",
+//         templateUrl: "rebranding.html"
+        
+//     })
+//     .when('/add-new-package', {
+//         templateUrl: "addNewPakage.html",
+//         controller: "addNewPackageCtrl"
+//     })
+// })
+
+
+app.controller("myController", function($scope) {
+    $scope.showMeNewPackage = false;
+    $scope.showMeTable = true;
     $scope.list = packages;
     $scope.addNewPackage = function() {
-        console.log($location);
-        //window.location = 'addNewPackage.html'
-        $location.path('addNewPackage.html')
-        return;
+        $scope.showMeNewPackage = !$scope.showMeNewPackage;
+        $scope.showMeTable = !$scope.showMeTable ;
     }
-    
-})
-
+});
