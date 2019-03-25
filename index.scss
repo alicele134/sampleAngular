@@ -2,7 +2,7 @@ $font: "Roboto", sans-serif;
 $padding-10: 10px;
 $margin-10: 10px;
 $background-color-sidenav: RGB(17,31,65);
-$color-sidenav-a:  #818181;
+$color-sidenav-a:  #b8bcc6;
 $color-sidenav-a-hover: #f1f1f1;
 $color-border-bottom: #eee;
 $color-button-add-new-package: #2672FB;
@@ -24,9 +24,16 @@ $color-button-white: #fff;
     left: 0;
     background-color: $background-color-sidenav;
     padding-top: 20px;
-     
+
+    padding-left: 25px;
+    padding-right: 25px
+    
+    img {
+        margin-bottom: 25px;
+    }
+
     a{
-        padding: 10px 0px 0px 20px;
+        padding: 10px 0px 20px 0px;
         text-decoration: none;
         font-size: 15px;
         color: $color-sidenav-a;
@@ -35,12 +42,16 @@ $color-button-white: #fff;
         cursor: pointer;
     }
 
+    li {
+        margin-left: 0px;
+    }
+
     i {
         margin-right: 5px;
     }
 
     a:hover {
-        color: $color-sidenav-a-hover;
+       // color: $color-sidenav-a-hover;
     }
 }
 
@@ -175,6 +186,11 @@ textarea.col-md-8.nameInput {
 }
 
 .addNewPackage {
+
+    h3 {
+        color: $color-button-add-new-package;
+    }
+
     form {
         border-bottom: 1px solid #cccccc;
         margin-bottom: $margin-10;
@@ -183,6 +199,7 @@ textarea.col-md-8.nameInput {
             margin-right: -15px;
             margin-left: -15px;
             min-height: 50px;
+            margin-bottom: 20px;
         
             input {
                 height: 40px;
@@ -192,6 +209,20 @@ textarea.col-md-8.nameInput {
                 height: 90px;
             }
         }
+    }
+
+    select {
+        width: 200px;
+        height: 35px;
+    }
+
+    .previewPack button {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            width: 200px;
+            background-color: white;
+            height: 35px;
     }
 
     .button-part {
@@ -206,18 +237,34 @@ textarea.col-md-8.nameInput {
                 color: $color-button-add-new-package;
                 border-color: $color-button-add-new-package;
                 border: 1px solid;
-            }
-    
-            &#add {
-                background-color: $color-button-add-new-package;
-                border: 0px;
-                color: $color-button-white;
 
-                :hover {
-                    color: red;
+                &:hover {
+                    background-color: red;
                 }
             }
         }
+
+        #add {
+            background-color: $color-button-add-new-package;
+            color: $color-button-white;
+            border: 0px;
+            background-color: #2672FB;
+            width: 100px;
+            height: 40px;
+            
+            &:hover {
+                background-color: red;
+            }
+        }
+
+        a {
+           position: relative; 
+        }
+    }
+
+    i.fas.fa-edit {
+        margin-top: 30px;
+        margin-left: 10px;
     }
 
     

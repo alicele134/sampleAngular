@@ -1,28 +1,21 @@
-<div class="main-body" >
-    <div class="paging">1-1 of 1 package</div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <input type="checkbox" name="" id="">
-                </th>
-                <th>PACKAGE NAME</th>
-                <th>DESCRIPTION</th>
-                <th>GROUPS ASSIGNED</th>
-                <th>LAST UPDATE</th>
-            </tr>
-        </thead>
-        <tbody id="dt">
-            <tr ng-repeat="p in list | filter:nameSearch">
-                <td>
-                    <input type="checkbox" name="" id="">
-                </td>
-                <td>{{ p.packageName }}</td>
-                <td>{{ p.description }}</td>
-                <td> {{ p.group }}</td>
-                <td>{{ p.lastUpdate }}</td>
-            </tr>
-            
-        </tbody>
-    </table>
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<p>The url of this page is:</p>
+<h3>{{myUrl}}</h3>
 </div>
+
+<p>This example uses the built-in $location service to get the absolute url of the page.</p>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $location) {
+    $scope.myUrl = $location.absUrl();
+});
+</script>
+
+</body>
+</html>

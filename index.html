@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
@@ -20,7 +20,7 @@
 <body ng-app="myApp" ng-init="mySwitch=1" ng-controller="myController">
     <div class="container-fluid">
         <div class="sidenav">
-            <h1 style="color: white; text-align:center; font-size: 35px">OPSWAT</h1>
+            <img src="file:///D:/mem-system/src/mem-console/src/main/webapp/resources/assets/logo/opswat_metaaccess.svg" alt="">
             <nav>
                 <ul class="nav">
                     <li>
@@ -85,7 +85,7 @@
                                 placeholder="Seacrh by name, description"> </span>
                         <span><button><i class="fas fa-search"></i> </button></span>
                     </div>
-        =           <div class="part-button-right"><button>DELETE</button></div>
+                    <div class="part-button-right" ng-click="deleteFunc()"><button>DELETE</button></div>
                 </div>
 
                 <div class="main-body">
@@ -94,51 +94,49 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <input type="checkbox" name="" id="">
+                                    <input type="checkbox" ng-model="leader">
                                 </th>
-                                <th>PACKAGE NAME</th>
-                                <th>DESCRIPTION</th>
-                                <th>GROUPS ASSIGNED</th>
-                                <th>LAST UPDATE</th>
+                                <th ng-click="orderByMe('packageName')">PACKAGE NAME</th>
+                                <th >DESCRIPTION</th>
+                                <th ng-click="orderByMe('group')">GROUPS ASSIGNED</th>
+                                <th ng-click="orderByMe('lastUpdate')">LAST UPDATE</th>
                             </tr>
                         </thead>
                         <tbody id="dt">
-                            <tr ng-repeat="p in list | filter:nameSearch">
+                            <tr ng-repeat="p in list | filter:nameSearch | orderBy:myOrderBy">
                                 <td>
-                                    <input type="checkbox" name="" id="">
+                                    <input type="checkbox" ng-checked="leader" ng-model="listToDel" ng-change="isSelected({{$index}})">
                                 </td>
-                                <td>{{ p.packageName }}</td>
-                                <td>{{ p.description }}</td>
-                                <td>{{ p.group }}</td>
-                                <td>{{ p.lastUpdate }}</td>
+                                <td ng-click="editPackagePage($index)">{{ p.packageName }}</td>
+                                <td ng-click="editPackagePage($index)">{{ p.description }}</td>
+                                <td ng-click="editPackagePage($index)">{{ p.group }}</td>
+                                <td ng-click="editPackagePage($index)">{{ p.lastUpdate }}</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
             </div>
 
-
-            <div class="addNewPackage" ng-show="showMeNewPackage" ng-init="addShow=formAddNewPackage.myInput.$valid">
+            <div class="addNewPackage" ng-show="showMeNewPackage">
                     <div class="header">
                             <div class="title-parent">Setting/ Branding</div>
                             <div class="title-child">
                                 <span class="headerLeft">
-                                    <h2>ADD NEW PACKAGE</h2>
+                                    <h2>Add New Package</h2>
                                 </span>
                             </div>
                     </div>
 
                     <div class="main-body">
                         <form action="" name="formAddNewPackage">
-                            <h2>Package Information</h2>
+                            <h3>Package Information</h3>
                             <div class="row">
                                 <div class="col-md-2" >
-                                    <label for="">Name* {{addShow}}</label>
+                                    <label for="">Name<span style="color: red">*</span></label>
                                 </div>
                                 <div></div>
                                 <div class="col-md-8" >
-                                    <input class="col-md-8" type="text" placeholder="Name should not be blank and less than  50 characters." name="myInput" ng-model="myInput" required>
+                                    <input class="col-md-8" type="text" placeholder="Name should not be blank and less than  50 characters."  ng-change="valueChange()" name="namePack" ng-model="namePack" ng-required>
                                 </div>  
                             </div>
                             <div class="row">
@@ -146,7 +144,94 @@
                                     <label for="">Desciption</label>
                                 </div>
                                 <div class="col-md-8" >
-                                        <textarea class="col-md-8 nameInput" type="text" placeholder="Description should be les than 1024 characters."></textarea>
+                                        <textarea class="col-md-8 nameInput" type="text" name="discription" ng-model="discription" placeholder="Description should be les than 1024 characters."></textarea>
+                                </div>  
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="">Rebranding package</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="rebrandingPackage">
+                                        <input type="radio" name="rebranding" value="defaultPack"></span> <label> Default Package (Multiple languages
+                                                    supported)</label><br>
+                                            <select>
+                                                <option value="0">English</option>
+                                            </select>
+                                    </div>
+                                    <div class="rebrandingPackage">
+                                        <input type="radio" name="rebranding" value="customizePack"> <label>Customize a package</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2" >
+                                    <label for="">Default package <br> (For customization)</label>
+                                </div>
+                                <div class="col-md-8" >
+                                    <a href="">Download Default Package</a>
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2" >
+                                    <label for="">Preview package</label>
+                                </div>
+                                <div class="col-md-8" >
+                                    <div class="previewPack">
+                                        <span>
+                                            <select>
+                                                <option value="0">Access Blocked</option>
+                                                <option value="1">Device At Risk</option>
+                                                <option value="2">No Issue Found</option>
+                                            </select>
+                                        </span>
+                                        <span>
+                                            <button>PREVIEW IN NEW TAB</button>
+                                        </span>
+                                    </div>
+                                </div> 
+                            </div>
+                         
+                        </form>
+                        <div class="button-part">
+                            <button id="discard" ng-click="discardFunc();">DISCARD</button>
+                            <input type="submit" value="ADD" id="add" ng-click="addNewPackFunc();" ng-disabled="btnAddShow">
+                        </div>
+                    </div>
+            </div>
+            
+            <!-- edit page sài lại class của "addNewPackage" -->
+            <div class="addNewPackage" ng-show="showMeEditPackage"> 
+                    <div class="header">
+                            <div class="title-parent">Setting/ Branding</div>
+                            <div class="title-child">
+                                <div class="showNamePack" ng-show="showNamePack">
+                                    <h2 style="float:left">{{namePack}}</h2> 
+                                    <a ng-click="editName()"><i class="fas fa-edit"></i> </a>
+                                </div>
+                                <div class="showEditNamePack" ng-show="showEditNamePack">
+                                    <input type="text" value="{{namePack}}" ng-model="namePack" ng-blur="changeNamePack()">
+                                </div>
+                               
+                            </div>
+                    </div>
+
+                    <div class="main-body">
+                        <form action="" name="formAddNewPackage">
+                            <h3>Package Information</h3>
+
+                            <div class="row">
+                                <div class="col-md-2" >
+                                    <label for="">Description</label>
+                                </div>
+                                <input type="hidden" ng-model="index">
+                                <div class="col-md-8" >
+                                    <div class="showDescriptionPack" ng-show="showDescriptionPack">
+                                        <p>{{ descriptionShow }} <span><a href="" ng-click="EditDescriptionPack()">Change</a></span></p>
+                                    </div>
+                                    <div class="showEditDescriptionPack" ng-show="showEditDescriptionPack">
+                                        <input type="text" value="{{descriptionShow}}" ng-model="descriptionShow" ng-blur="changeDescriptionPack()">
+                                    </div>
                                 </div>  
                             </div>
                             <div class="row">
@@ -154,7 +239,16 @@
                                     <label for="">Rebranding package</label>
                                 </div>
                                 <div class="col-md-8" >
-                                    
+                                    <div class="rebrandingPackage">
+                                        <input type="radio" name="rebranding" value="defaultPack"></span><label> Default Package (Multiple languages
+                                                        supported)</label><br>
+                                            <select>
+                                                <option value="0">English</option>
+                                            </select>
+                                    </div>
+                                    <div class="rebrandingPackage">
+                                        <input type="radio" name="rebranding" value="customizePack"> <label>Customize a package</label><br>
+                                    </div>
                                 </div>  
                             </div>
                             <div class="row">
@@ -170,20 +264,52 @@
                                     <label for="">Preview package</label>
                                 </div>
                                 <div class="col-md-8" >
-                                    <button>Access Blocked</button>
-                                    <button>PREVIEW IN NEW TAB</button>
+                                    <div class="previewPack">
+                                        <span>
+                                            <select>
+                                                <option value="0">Access Blocked</option>
+                                                <option value="1">Device At Risk</option>
+                                                <option value="2">No Issue Found</option>
+                                            </select>
+                                        </span>
+                                        <span>
+                                            <button disabled="disabled">PREVIEW IN NEW TAB</button>
+                                        </span>
+                                    </div>
                                 </div> 
                             </div>
-                            
+                            <div class="row">
+                                <div><h4>Assigned to 2 group (s)</h4>
+                                <div class="paging">1-1 of 1 package</div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>GROUP NAME</th>
+                                            <th>DC DOMAIN</th>
+                                            <th>DEVICES</th>
+                                            <th>ASSIGNED DATE</th>
+                                         </tr>
+                                    </thead>
+                                    <tbody id="dt">
+                                        <tr ng-repeat="p in list | filter:nameSearch">
+                                            <td>{{ p.packageName }}</td>
+                                            <td>{{ p.description }}</td>
+                                            <td>{{ p.group }}</td>
+                                            <td>{{ p.lastUpdate }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                         
                         </form>
                         <div class="button-part">
-                            <button id="discard">DISCARD</button>
-                            <button id="add" >ADD {{addShow}}</button>
+                            <button id="discard" ng-click="discardFunc();">DISCARD</button>
+                            <input type="submit" value="SAVE" id="add" ng-click="editPackage();">
                         </div>
                     </div>
-
             </div>
-
+            
             <div class="footer">
                     <div><img
                             src="file:///D:/mem-system/src/mem-console/src/main/webapp/resources/images/rem/opswat-logo-black.svg"
